@@ -1,0 +1,89 @@
+@page "/"
+@using TaskManagerApp.Helper
+@using TaskManagerApp.Services
+@using System.Text
+@using System.Xml.Serialization
+@inject TaskManager TaskManager
+@inject IJSRuntime JS
+
+<div class="container">
+    <h1>Task Manager</h1>
+
+    <!-- Taken toevoegen -->
+    <div>
+        <input @bind="TaskName" placeholder="Enter task name" />
+        <input @bind="TaskPriority" type="number" placeholder="Priority (lower is more important)" />
+        <button @onclick="AddTask">Add Task</button>
+        <button @onclick="SaveTask">Save Tasks</button>
+        @* <button @onclick="LoadTasks">Load Tasks</button>  *@
+    </div>
+
+    <!-- Takenlijst -->
+    <ul>
+        @foreach (var task in Tasks)
+        {
+                    <li>
+                        <span>@task.Name (Priority: @task.Priority)</span>
+                        <button @onclick="() => RemoveTask(task.Name)">Remove</button>
+                    </li>
+        }
+    </ul>
+
+    <InputFile OnChange="HandleFileChange" style="display:none" id="fileInput" /> 
+    <label for="fileInput" class="btn">Choose File</label>
+</div>
+
+@code {
+    private string TaskName = string.Empty;
+    private int TaskPriority;
+    private List<TodoTask> Tasks = new();
+    protected override void OnInitialized()
+    {
+        Tasks = TaskManager.GetTasks().ToList();
+    }
+
+    private void AddTask()
+    {
+        if (!string.IsNullOrWhiteSpace(TaskName))
+        {
+            TaskManager.AddTask(new TodoTask { Name = TaskName, Priority = TaskPriority });
+            Tasks = TaskManager.GetTasks().ToList();
+            TaskName = string.Empty;
+            TaskPriority = 0;
+        }
+    }
+
+    private void RemoveTask(string taskName)
+    {
+        TaskManager.RemoveTask(taskName);
+        Tasks = TaskManager.GetTasks().ToList();
+    }
+
+
+    private void SaveTask()
+    {
+        string savedTasksEncoded = TaskManager.EnCodeTask();
+        Downloader downloader = new Downloader();
+        downloader.DownloadFiles(savedTasksEncoded);
+    }
+
+
+
+
+    private async Task HandleFileChange(InputFileChangeEventArgs e)
+    {
+        using var stream = e.File.OpenReadStream();
+        using var reader = new StreamReader(stream);
+        string content = await reader.ReadToEndAsync();
+
+        try
+        {
+            TaskManager.LoadTasks(content);
+            Tasks = TaskManager.GetTasks().ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
