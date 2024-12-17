@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\klaas\\OneDrive\\Bureaublad\\it_exploration\\meetup-1-klaas-cornette\\meetup-1-klaas-cornette.csproj": {}
+    "D:\\it-exploration\\meetup_app\\meetup-1-klaas-cornette\\meetup-1-klaas-cornette.csproj": {}
   },
   "projects": {
-    "C:\\Users\\klaas\\OneDrive\\Bureaublad\\it_exploration\\meetup-1-klaas-cornette\\meetup-1-klaas-cornette.csproj": {
+    "D:\\it-exploration\\meetup_app\\meetup-1-klaas-cornette\\meetup-1-klaas-cornette.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\klaas\\OneDrive\\Bureaublad\\it_exploration\\meetup-1-klaas-cornette\\meetup-1-klaas-cornette.csproj",
+        "projectUniqueName": "D:\\it-exploration\\meetup_app\\meetup-1-klaas-cornette\\meetup-1-klaas-cornette.csproj",
         "projectName": "meetup-1-klaas-cornette",
-        "projectPath": "C:\\Users\\klaas\\OneDrive\\Bureaublad\\it_exploration\\meetup-1-klaas-cornette\\meetup-1-klaas-cornette.csproj",
-        "packagesPath": "C:\\Users\\klaas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\klaas\\OneDrive\\Bureaublad\\it_exploration\\meetup-1-klaas-cornette\\obj\\",
+        "projectPath": "D:\\it-exploration\\meetup_app\\meetup-1-klaas-cornette\\meetup-1-klaas-cornette.csproj",
+        "packagesPath": "C:\\Users\\Klaas\\.nuget\\packages\\",
+        "outputPath": "D:\\it-exploration\\meetup_app\\meetup-1-klaas-cornette\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\klaas\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Klaas\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
