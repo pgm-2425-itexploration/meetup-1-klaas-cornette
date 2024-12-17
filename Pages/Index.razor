@@ -9,8 +9,6 @@
 
 <div class="container">
     <h1>Task Manager</h1>
-
-    <!-- Taken toevoegen -->
     <div>
         <input @bind="TaskName" placeholder="Enter task name" />
         <input @bind="TaskPriority" type="number" placeholder="Priority (lower is more important)" />
@@ -18,17 +16,15 @@
         <button @onclick="SaveTask">Save Tasks</button>
         <button @onclick="LoadTasks">Load Tasks</button> 
         <input type="file" @ref="fileInput" @onchange="LoadTasksInput" />
- 
-    </div>
 
-    <!-- Takenlijst -->
+    </div>
     <ul>
         @foreach (var task in Tasks)
         {
-            <li>
-                <span>@task.Name (Priority: @task.Priority)</span>
-                <button @onclick="() => RemoveTask(task.Name)">Remove</button>
-            </li>
+                <li>
+                    <span>@task.Name (Priority: @task.Priority)</span>
+                    <button @onclick="() => RemoveTask(task.Name)">Remove</button>
+                </li>
         }
     </ul>
 </div>
@@ -37,6 +33,8 @@
     private string TaskName = string.Empty;
     private int TaskPriority;
     private List<TodoTask> Tasks = new();
+    private ElementReference fileInput;
+
     protected override void OnInitialized()
     {
         Tasks = TaskManager.GetTasks().ToList();
@@ -59,7 +57,6 @@
         Tasks = TaskManager.GetTasks().ToList();
     }
 
-
     private async void SaveTask()
     {
         string savedTasksEncoded = TaskManager.EnCodeTask();
@@ -67,25 +64,20 @@
         string content = "data:text/plain;charset=utf-8," + Uri.EscapeDataString(savedTasksEncoded);
         await JS.InvokeVoidAsync("downloadFile", fileName, content);
     }
-
-
-    private ElementReference fileInput;
-
-private async Task LoadTasksInput()
-{
-    // Haal het geselecteerde bestand op
-    var files = await JS.InvokeAsync<string>("getUploadedFileContent", fileInput);
-    if (files != null)
+    
+    private async void LoadTasksInput()
     {
-        // Decodeer de inhoud van het bestand
-        string decodedTasks = Uri.UnescapeDataString(files);
-        
-        // Gebruik de inhoud om taken te laden
-        TaskManager.LoadTasks(decodedTasks);
-
-        Console.WriteLine("Taken geladen: " + decodedTasks);
+        // Haal het geselecteerde bestand op
+        var files = await JS.InvokeAsync<string>("getUploadedFileContent", fileInput);
+        if (files != null)
+        {
+            // Decodeer de inhoud van het bestand
+            string decodedTasks = Uri.UnescapeDataString(files);
+            // Gebruik de inhoud om taken te laden
+            TaskManager.LoadTasks(decodedTasks);
+            Console.WriteLine("Taken geladen: " + decodedTasks);
+        }
     }
-}
 
     private void LoadTasks()
     {

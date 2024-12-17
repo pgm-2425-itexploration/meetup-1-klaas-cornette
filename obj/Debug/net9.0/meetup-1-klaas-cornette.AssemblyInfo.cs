@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("meetup-1-klaas-cornette")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+af679762b08f892aa4cfe79afdae4f8fe0c2ffcf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3281954b38f90e04a1def6d93c510c607ff8d0ca")]
 [assembly: System.Reflection.AssemblyProductAttribute("meetup-1-klaas-cornette")]
 [assembly: System.Reflection.AssemblyTitleAttribute("meetup-1-klaas-cornette")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

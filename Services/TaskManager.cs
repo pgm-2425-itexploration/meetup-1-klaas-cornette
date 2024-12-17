@@ -63,7 +63,7 @@ namespace TaskManagerApp.Services
             {
                 var parts = line.Split(',');
                 if (parts.Length == 2)
-                { 
+                {
                     Console.WriteLine(parts[0]);
                     Console.WriteLine(parts[1]);
                     _tasks.Add(new TodoTask
@@ -73,7 +73,7 @@ namespace TaskManagerApp.Services
                     });
                 }
             }
-            
+
         }
 
         private static byte[] ComputeHash(string input)
