@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\meetup-1-klaas-cornette.props" />
+</Project>
